@@ -35,7 +35,6 @@ class _sebhaState extends State<sebha> {
             height: MediaQuery.of(context).size.height*0.46 -60,
 
             child: Stack(
-
               children: [
                 Positioned(
                   left: size.width*0.28,
