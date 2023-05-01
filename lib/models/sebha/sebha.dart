@@ -1,14 +1,18 @@
+import 'dart:math';
+
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:islami/models/moduels/my_theam.dart';
 
 class sebha extends StatefulWidget {
+  const sebha({super.key});
   @override
   State<sebha> createState() => _sebhaState();
 }
 
 class _sebhaState extends State<sebha> {
+@override
   int Counter=0;
 
   int index=0;
@@ -26,35 +30,36 @@ class _sebhaState extends State<sebha> {
     return Scaffold(
       body: Column(
         children: [
-          Container(
-
-            margin: EdgeInsets.only(
-              top: size.height*0.08,
-              left: size.width*0.16
-            ),
-            height: MediaQuery.of(context).size.height*0.46 -60,
-
-            child: Stack(
-              children: [
-                Positioned(
-                  left: size.width*0.28,
-                    child: Image.asset(
-                      "assets/images/head_sebha.png",
-                    ),
-
-                ),
-                Positioned(
-                  bottom: size.height*0,
-                  child: GestureDetector(
-                    onTap:onPress,
-                    child: Image.asset(
-                        "assets/images/body_sebha.png" ,
+          Transform.rotate(
+            angle: 00.3,
+            child: Container(
+              margin: EdgeInsets.only(
+                top: size.height*0.08,
+                left: size.width*0.16
+              ),
+              height: MediaQuery.of(context).size.height*0.46 -60,
+              child: Stack(
+                children: [
+                  Positioned(
+                    left: size.width*0.28,
+                      child: Image.asset(
+                        "assets/images/head_sebha.png",
                       ),
+
                   ),
-                ),
+                  Positioned(
+                    bottom: size.height*0,
+                    child: GestureDetector(
+                      onTap:onPress,
+                      child: Image.asset(
+                          "assets/images/body_sebha.png" ,
+                        ),
+                    ),
+                  ),
 
 
-              ],
+                ],
+              ),
             ),
           ),
           SizedBox(
