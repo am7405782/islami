@@ -1,9 +1,10 @@
 import 'package:flutter/material.dart';
-import 'package:google_fonts/google_fonts.dart';
+
 import 'package:islami/models/moduels/my_theam.dart';
 import 'package:islami/models/quran/sorsaCountant.dart';
 
 
+import 'models/headit/ahaditCountent.dart';
 import 'models/home/Home.dart';
 import 'Splach.dart';
 
@@ -23,9 +24,9 @@ class MyApp extends StatelessWidget{
       initialRoute: Splach.namekey,
       routes: {
         Home.nameKey: (_) => Home(),
-        Splach.namekey:(_)=>Splach(),
-        SoraCountant.namekey:(_)=>SoraCountant(),
-
+        Splach.namekey: (_) => Splach(),
+        SoraCountant.namekey: (_) => SoraCountant(),
+        AhadithContent.namekey: (_) => AhadithContent(),
       },
     );
   }
