@@ -11,13 +11,37 @@ class sebha extends StatefulWidget {
   State<sebha> createState() => _sebhaState();
 }
 
-class _sebhaState extends State<sebha> {
-@override
-  int Counter=0;
+class _sebhaState extends State<sebha> with SingleTickerProviderStateMixin {
+  late AnimationController controller;
+  late Animation<double> animation;
 
-  int index=0;
+  @override
+  void initState() {
+    // TODO: implement initState
+    super.initState();
+    controller = AnimationController(
+      vsync: this,
+      duration: Duration(milliseconds: 700),
+    );
+    // controller.addListener((status)async { })
+    setRotion(5);
+  }
 
-  List<String>words=[
+  void dispose() {
+    controller.dispose();
+    super.dispose();
+  }
+
+  void setRotion(int degree) {
+    final angle = degree * pi / 180;
+    animation = Tween<double>(begin: 0, end: angle).animate(controller);
+  }
+
+  int Counter = 0;
+
+  int index = 0;
+
+  List<String> words = [
     "سبحان الله",
     "الحمد لله",
     "الله اكبر",
@@ -30,36 +54,35 @@ class _sebhaState extends State<sebha> {
     return Scaffold(
       body: Column(
         children: [
-          Transform.rotate(
-            angle: 00.3,
+          AnimatedBuilder(
+            animation: animation,
             child: Container(
               margin: EdgeInsets.only(
-                top: size.height*0.08,
-                left: size.width*0.16
-              ),
-              height: MediaQuery.of(context).size.height*0.46 -60,
+                  top: size.height * 0.08, left: size.width * 0.16),
+              height: MediaQuery.of(context).size.height * 0.46 - 60,
               child: Stack(
                 children: [
                   Positioned(
-                    left: size.width*0.28,
-                      child: Image.asset(
-                        "assets/images/head_sebha.png",
-                      ),
-
-                  ),
-                  Positioned(
-                    bottom: size.height*0,
-                    child: GestureDetector(
-                      onTap:onPress,
-                      child: Image.asset(
-                          "assets/images/body_sebha.png" ,
-                        ),
+                    left: size.width * 0.28,
+                    child: Image.asset(
+                      "assets/images/head_sebha.png",
                     ),
                   ),
-
-
+                  Positioned(
+                    bottom: size.height * 0,
+                    child: GestureDetector(
+                      onTap: onPress,
+                      child: Image.asset(
+                        "assets/images/body_sebha.png",
+                      ),
+                    ),
+                  ),
                 ],
               ),
+            ),
+            builder: (context, child) => Transform.rotate(
+              angle: animation.value,
+              child: child,
             ),
           ),
           SizedBox(
@@ -123,16 +146,15 @@ class _sebhaState extends State<sebha> {
 
   void onPress(){
     Counter++;
-    if(Counter==30){
-      if(index!=words.length -1){
+    if (Counter == 30) {
+      if (index != words.length - 1) {
         index++;
-      }else{
-        index=0;
+      } else {
+        index = 0;
       }
-      Counter=0;
+      Counter = 0;
     }
-    setState(() {
-
-    });
+    controller.forward(from: 0);
+    setState(() {});
   }
 }
